@@ -72,8 +72,8 @@ namespace sugar {
             return pack_date(y, m, d);
         }
 
-        // 5) ISO-8601 datetime variants: "YYYY-MM-DDTHH:MM[:SS][Z|±HH:MM]"
-        //    We only need the DATE for the legacy API — just slice s[0..9].
+        // 5) ISO-8601 datetime variants: "YYYY-MM-DDTHH:MM[:SS][Z|Â±HH:MM]"
+        //    Legacy API needs DATE â€” just slice s[0..9].
         //    Accept strings with 'T' after position 10.
         if (s.size() >= 19 && s[4] == '-' && s[7] == '-' && s[10] == 'T') {
             return try_parse_yyyy_mm_dd(s.substr(0, 10));
@@ -88,10 +88,10 @@ namespace sugar {
             out[i] = char('0' + (yyyymmdd % 10));
             yyyymmdd /= 10;
         }
-        // Note: no null terminator required if you print via string_view(out, 8).
+        // Note: no null terminator required, print via string_view(out, 8).
     }
 
-    // --- NEW: full ISO-8601 date-time parser ---------------------------------
+    // --- full ISO-8601 date-time parser ---------------------------------
 
     // Expected: YYYY-MM-DD 'T' HH:MM [':' SS]? ( 'Z' | ('+'|'-') HH ':' MM )?
     // Returns true on success and fills outputs.
@@ -140,7 +140,7 @@ namespace sugar {
         }
 
         if (tzch == '+' || tzch == '-') {
-            // Expect ±HH:MM
+            // Expect Â±HH:MM
             if (pos + 6 != s.size()) return false;
             int tzh = -1, tzm = -1;
             if (!parse_2(s.substr(pos + 1, 2), tzh)) return false;
@@ -151,8 +151,9 @@ namespace sugar {
             return true;
         }
 
-        // Anything else after time we don't accept (keeps behavior strict).
+        // Anything else after time, don't accept
         return false;
     }
 
 } // namespace sugar
+
