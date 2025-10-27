@@ -11,7 +11,7 @@ Reads financial `.csv` candle data, computes indicator signals, backtests strate
    ```
 
 ## Layout 
-Repo keeps sources/headers in the root to avoid include-path issues. Optional: refactor into `src/` and `include/` later.
+Repo keeps sources/headers in the root to avoid include-path issues. Optional: refactor into `src/`, `include/` and `app` later.
 
 ## Overview:
 | Layer              | Role                                                   | Example                                                          |
