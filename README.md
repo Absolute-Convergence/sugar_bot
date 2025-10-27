@@ -16,24 +16,40 @@ Overview:
 
 Repo Structure:
 ```
-src/
- ├─ indicators/
- │   ├─ indicators_sma.cpp/.h
- │   ├─ indicators_ema.cpp/.h
- │   ├─ indicators_roc.cpp/.h
- │   └─ indicators_composite.cpp/.h
- ├─ strategy/
- │   ├─ strategy_roc_sma.cpp/.h
- │   └─ strategy.h
- ├─ core/
- │   ├─ series.h
- │   ├─ candle.h
- │   ├─ utils.cpp/.h
- │   ├─ csv.cpp/.h
- │   ├─ backtester.h
- │   ├─ metrics.h
- │   └─ sweep.h
- └─ main.cpp
+sugar_Bot/
+├─ app/
+│  └─ main.cpp
+├─ data/                        # sample CSVs 
+├─ include/
+│  ├─ backtester.h
+│  ├─ candle.h
+│  ├─ csv.h
+│  ├─ indicator.h
+│  ├─ indicators_composite.h
+│  ├─ indicators_ema.h
+│  ├─ indicators_roc.h
+│  ├─ indicators_sma.h
+│  ├─ metrics.h
+│  ├─ series.h
+│  ├─ strategy.h
+│  ├─ strategy_roc_sma.h
+│  ├─ sweep.h
+│  └─ utils.h
+├─ out/                         # build output (should be .gitignored)
+├─ src/
+│  ├─ backtester.cpp            # currently empty
+│  ├─ csv.cpp
+│  ├─ indicators_composite.cpp
+│  ├─ indicators_ema.cpp
+│  ├─ indicators_roc.cpp
+│  ├─ indicators_sma.cpp
+│  ├─ series.cpp                # currently empty
+│  ├─ strategy_roc_sma.cpp
+│  ├─ sweep.cpp                 # currently empty
+│  └─ utils.cpp
+├─ CMakeLists.txt
+└─ README.md
+
 ```
 
 
