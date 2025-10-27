@@ -25,7 +25,7 @@ Repo keeps sources/headers in the root to avoid include-path issues. Optional: r
 
 ## Repo Structure
 
-```text
+```
 src/
  ├─ indicators/
  │   ├─ indicators_sma.cpp/.h
@@ -47,17 +47,17 @@ src/
 
 
 
-```md
+```
 ## Architecture
 
-```text
+```
 main.cpp
  ├─ Backtester
  │   └─ Strategy (e.g. RocSmaCrossoverStrategy)
  │        ├─ Indicators (SMA, EMA, ROC, ROCOfIndicator)
  │        └─ CandleSeries (market data)
  └─ Sweep (multi-parameter optimization)
-
+```
 
 ## Implemented Indicators: 
 | Indicator        | Description                                                  |
