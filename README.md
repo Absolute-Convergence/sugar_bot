@@ -35,7 +35,7 @@ sugar_Bot/
 │  ├─ strategy_roc_sma.h
 │  ├─ sweep.h
 │  └─ utils.h
-├─ out/                         # build output (should be .gitignored)
+├─ out/                         # build output 
 ├─ src/
 │  ├─ backtester.cpp            # currently empty
 │  ├─ csv.cpp
