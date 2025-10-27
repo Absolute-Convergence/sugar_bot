@@ -4,14 +4,14 @@
 Reads financial `.csv` candle data, computes indicator signals, backtests strategies, and performs multi-parameter (M×N) sweeps.
 
 ## Quick Start
-1. Build with your preferred C++17+ compiler.
+1. Build with preferred C++17+ compiler.
 2. Run:
    ```bash
    ./sugar_bot_cpp path/to/BTCUSD_420.csv
    ```
 
-## Layout (flat for easy upload)
-This repo keeps sources/headers in the root to avoid include-path issues. You can refactor into `src/` and `include/` later.
+## Layout 
+Repo keeps sources/headers in the root to avoid include-path issues. Optional: refactor into `src/` and `include/` later.
 
 ## Overview:
 | Layer              | Role                                                   | Example                                                          |
