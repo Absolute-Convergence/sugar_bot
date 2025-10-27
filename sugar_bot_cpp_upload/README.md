@@ -7,7 +7,7 @@ Reads financial `.csv` candle data, computes indicator signals, backtests strate
 1. Build with preferred C++17+ compiler.
 2. Run:
    ```bash
-   ./sugar_bot_cpp path/to/BTCUSD_420.csv
+   ./sugar_bot_cpp path/to/FILE_NAME.csv
    ```
 
 ## Layout 
