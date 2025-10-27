@@ -23,7 +23,9 @@ Repo keeps sources/headers in the root to avoid include-path issues. Optional: r
 | **Sweeper**        | Performs parameter sweeps to find best configurations. | `sweep_roc_sma()`                                                |
 
 
-## Repo Structure:
+## Repo Structure
+
+```text
 src/
  ├─ indicators/
  │   ├─ indicators_sma.cpp/.h
@@ -44,7 +46,11 @@ src/
  └─ main.cpp
 
 
-## Architecture:
+
+```md
+## Architecture
+
+```text
 main.cpp
  ├─ Backtester
  │   └─ Strategy (e.g. RocSmaCrossoverStrategy)
