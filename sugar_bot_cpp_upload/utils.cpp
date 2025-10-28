@@ -73,8 +73,8 @@ namespace sugar {
         }
 
         // 5) ISO-8601 datetime variants: "YYYY-MM-DDTHH:MM[:SS][Z|±HH:MM]"
-        //    legacy API still needs DATE — just slice s[0..9].
-        //    Accept strings with 'T' after position 10.
+            //    legacy API still needs DATE — just slice s[0..9].
+            //    Accept strings with 'T' after position 10.
         if (s.size() >= 19 && s[4] == '-' && s[7] == '-' && s[10] == 'T') {
             return try_parse_yyyy_mm_dd(s.substr(0, 10));
         }
