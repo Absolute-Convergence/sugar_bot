@@ -7,14 +7,14 @@
 namespace sugar {
 
 
-	class IStrategy {
-	public:
-		virtual ~IStrategy() = default;
-		virtual BacktestResult run(const CandleSeries& data) = 0;
+	class IStrategy {													//
+	public:																//
+		virtual ~IStrategy() = default;									//
+		virtual BacktestResult run(const CandleSeries& data) = 0;		// 
 	};
 
 
-	using StrategyPtr = std::shared_ptr<IStrategy>;
+	using StrategyPtr = std::shared_ptr<IStrategy>;						// 
 
 
 } // namespace sugar

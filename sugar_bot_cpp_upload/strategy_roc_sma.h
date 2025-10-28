@@ -6,22 +6,22 @@
 namespace sugar {
 
 
-	class RocSmaCrossoverStrategy final : public IStrategy {
-	public:
-		RocSmaCrossoverStrategy(std::size_t sma_fast,
-			std::size_t sma_slow,
-			std::size_t roc_len,
-			double thresh_percent);
+	class RocSmaCrossoverStrategy final : public IStrategy {					//
+	public:																		//
+		RocSmaCrossoverStrategy(std::size_t sma_fast,							//
+			std::size_t sma_slow,												//
+			std::size_t roc_len,												//
+			double thresh_percent);												//
 
 
-		BacktestResult run(const CandleSeries& data) override;
+		BacktestResult run(const CandleSeries& data) override;					//
 
 
-	private:
-		std::size_t sma_fast_{};
-		std::size_t sma_slow_{};
-		std::size_t roc_len_{};
-		double thresh_{};
+	private:																	//
+		std::size_t sma_fast_{};												//
+		std::size_t sma_slow_{};												//
+		std::size_t roc_len_{};													//
+		double thresh_{};														//
 	};
 
 
