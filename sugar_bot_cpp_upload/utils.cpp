@@ -88,7 +88,7 @@ namespace sugar {
             out[i] = char('0' + (yyyymmdd % 10));
             yyyymmdd /= 10;
         }
-        // Note: no null terminator required if you print via string_view(out, 8).
+        // Note: no null terminator required if printed via string_view(out, 8).
     }
 
     // --- Full ISO-8601 date-time parser ---------------------------------
