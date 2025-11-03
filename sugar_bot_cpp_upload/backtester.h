@@ -7,7 +7,7 @@ namespace sugar {
 
 	class Backtester {																//
 	public:																			//
-		BacktestResult run(IStrategy& strategy, const CandleSeries& data) {			//
+		BacktestResult run(const CandleSeries& data, IStrategy& strategy) {			//
 			return strategy.run(data);												//
 		}
 	};

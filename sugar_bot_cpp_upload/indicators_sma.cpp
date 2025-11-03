@@ -35,4 +35,20 @@ namespace sugar {
 	}
 
 
+	std::vector<double> sma_over_series(const std::vector<double>& v, std::size_t n) {				// 
+		std::vector<double> out(v.size(), qnan());													// 
+		if (n == 0 || v.size() < n) return out;														// 
+
+		double window_sum = std::accumulate(v.begin(), v.begin() + n, 0.0);							// 
+		out[n - 1] = window_sum / static_cast<double>(n);											// 
+
+		for (std::size_t i = n; i < v.size(); ++i) {												// 
+			window_sum += v[i] - v[i - n];															// 
+			out[i] = window_sum / static_cast<double>(n);											// 
+		}
+		return out;																					// 
+	}
+
+
+
 } // namespace sugar

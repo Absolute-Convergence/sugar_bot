@@ -10,7 +10,11 @@
 #include "series.h"
 #include "backtester.h"
 #include "strategy_roc_sma.h"
-#include "sweep.h"
+#include "sweep.h"      
+#include "strategy_diff_cross.h"
+#include "swing_breakout_strategy.h"
+
+
 
 
 // Inclusive integer range: [start, stop] step>0
@@ -30,6 +34,35 @@ static std::vector<double> make_drange(double start, double stop, double step) {
 	return v;
 }
 
+void static run_swing_breakout(const sugar::CandleSeries& candles) {
+	using sugar::SwingBreakoutStrategy;
+	using sugar::Backtester;
+
+	// Core parameters — tune manually for now
+	const std::size_t leftBars = 2;
+	const std::size_t rightBars = 2;
+	const bool useEmaStop = true;
+	const int daysAbove10 = 2;
+	const double pctGainThreshold = 4.0;
+	const int daysForGain = 3;
+	const double maxLossPct = 8.0;
+
+	SwingBreakoutStrategy strat{
+		leftBars, rightBars, useEmaStop,
+		daysAbove10, pctGainThreshold, daysForGain, maxLossPct
+	};
+
+	Backtester bt;
+	// Fix: pass strategy first, then data
+	auto result = bt.run(candles, strat);
+
+	std::cout << "Swing Breakout Strategy\n"
+		<< "-----------------------\n"
+		<< "PnL: " << result.pnl << "%\n"
+		<< "Trades: " << result.trades << "\n"
+		<< "Max DD: " << result.max_drawdown << "%\n"
+		<< std::endl;
+}
 
 
 int main(int argc, char** argv) {
@@ -43,8 +76,10 @@ int main(int argc, char** argv) {
 		std::cout << std::fixed << std::setprecision(2);
 		const auto& rows = series.rows();
 		std::size_t count = std::min<std::size_t>(rows.size(), 20);
+		std::cout << "Print data tail to verify csv loaded to user: " << '\n';
 		for (std::size_t i = rows.size() - count; i < rows.size(); ++i) {
-			const auto& c = rows[i]; char buf[9]; sugar::format_yyyymmdd(c.date, buf);
+			const auto& c = rows[i]; char buf[9]; 
+			sugar::format_yyyymmdd(c.date, buf);
 			std::cout << std::string_view(buf, 8)
 				<< ", " << c.open
 				<< ", " << c.high
@@ -53,24 +88,17 @@ int main(int argc, char** argv) {
 				<< ", vol=" << c.volume << "\n";
 		}
 		std::cout << "Loaded " << rows.size() << " candle(s) from '" << path << "'\n";
+		
+		/*
+		run_swing_breakout(series);
+		auto best = sweep_swing_breakout(series);
 
-
-		// Run OOP strategy via Backtester
-		sugar::RocSmaCrossoverStrategy strat{/*fast=*/10, /*slow=*/30, /*roc=*/5, /*thresh=*/0.25 };
-		sugar::Backtester bt;
-		auto res = bt.run(strat, series);
-
-
-		std::cout << "\nStrategy ROC(SMA) crossover results:\n";
-		std::cout << " PnL: " << res.pnl << "%\n";
-		std::cout << " Trades: " << res.trades << "\n";
-		std::cout << " Max DD: " << res.max_drawdown << "%\n";
-		if (res.best_start_date > 0) {
-			char b[9]; sugar::format_yyyymmdd(res.best_start_date, b);
-			std::cout << " Start usable date: " << std::string_view(b, 8) << "\n";
-		}
-
-
+		std::cout << "Best PnL: " << best.result.pnl
+			<< " | Max DD: " << best.result.max_drawdown
+			<< " | Trades: " << best.result.trades
+			<< std::endl;
+		*/
+		
 		// Sweep example
 		auto fasts = make_range(45, 55, 1);
 		auto slows = make_range(55,65, 1);
@@ -119,6 +147,26 @@ int main(int argc, char** argv) {
 		std::cout << " PnL: " << best.best.pnl << "%, Trades: " << best.best.trades
 			<< ", Max DD: " << best.best.max_drawdown << "%\n";
 
+
+		// Run OOP strategy via Backtester
+
+		
+		//sugar::RocSmaCrossoverStrategy strat{/*fast=*/10, /*slow=*/30, /*roc=*/5, /*thresh=*/0.25 };
+		/*
+		sugar::Backtester bt;
+		auto res = bt.run(series, strat);
+
+
+		std::cout << "\nStrategy ROC(SMA) crossover results:\n";
+		std::cout << " PnL: " << res.pnl << "%\n";
+		std::cout << " Trades: " << res.trades << "\n";
+		std::cout << " Max DD: " << res.max_drawdown << "%\n";
+		if (res.best_start_date > 0) {
+			char b[9]; sugar::format_yyyymmdd(res.best_start_date, b);
+			std::cout << " Start usable date: " << std::string_view(b, 8) << "\n";
+		}
+		
+		*/
 
 		return 0;
 	}

@@ -7,14 +7,14 @@
 namespace sugar {
 
 
-	class IStrategy {													//
-	public:																//
-		virtual ~IStrategy() = default;									//
-		virtual BacktestResult run(const CandleSeries& data) = 0;		// 
+	class IStrategy {													// abstract class, can not be referenced directly
+	public:																
+		virtual ~IStrategy() = default;									// call destructor in derived classes through pointer operations
+		virtual BacktestResult run(const CandleSeries& data) = 0;		// virtual base function "run" with contract definition 
 	};
 
 
-	using StrategyPtr = std::shared_ptr<IStrategy>;						// 
+	using StrategyPtr = std::shared_ptr<IStrategy>;						// type alias for IStrategy smart pointer operations  
 
 
 } // namespace sugar

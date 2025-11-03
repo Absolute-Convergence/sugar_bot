@@ -9,9 +9,9 @@
 
 namespace sugar {
 
-                                                                                                                // Minimal CSV splitter:
-                                                                                                                // - Handles double quotes to allow commas inside quoted fields.
-                                                                                                                // - Does not handle escaped quotes inside quoted fields
+    // Minimal CSV splitter:
+        // Handles double quotes to allow commas inside quoted fields.
+        // Does not handle escaped quotes inside quoted fields
     std::vector<std::string> split_csv_line(std::string_view sv) {
         std::vector<std::string> out;                                                                           // vector of string objects to be returned later 
         std::string cur;                                                                                        // temp string to read and store characters into a string
@@ -27,7 +27,7 @@ namespace sugar {
         return out;                                                                                             // return the vector of strings out
     }
 
-                                                                                                                // Tiny heuristic: if the first column name contains "date", treat first row as header.
+    // Tiny heuristic: if the first column name contains "date", treat first row as header.
     static bool maybe_header(const std::vector<std::string>& cols) {                                            // accepts a vector of strings, and checks to see if it fits a header pattern
         if (cols.empty()) return true;                                                                          // first line check, if the columns vector is empty, skip it and exit the function
         std::string first = cols[0];                                                                            // string, initialized with the first string in function parameter
@@ -36,8 +36,8 @@ namespace sugar {
         return first.find("date") != std::string::npos || first.find("time") != std::string::npos;              // once every character in the header string is lowercase, search for 'date' or 'time' return a position/index to that location, or npos
     }
 
-                                                                                                                // Read CSV file into a vector<Candle>.
-                                                                                                                // Required columns by index: 0=Date, 1=Open, 2=High, 3=Low, 4=Close, 5=Volume (optional)
+    // Read CSV file into a vector<Candle>.
+    // Required columns by index: 0=Date, 1=Open, 2=High, 3=Low, 4=Close, 5=Volume (optional)
     std::vector<Candle> load_candles_csv(const std::string& path) {                                             // the actual candle loader function, accepts a compatable string object argument, passed by const reference
                                                                                                                 // Two-step open avoids MSVC "vexing parse" and name-collision weirdness.
         std::ifstream ifs;                                                                                      // in file stream object, to be used later for reading the csv
