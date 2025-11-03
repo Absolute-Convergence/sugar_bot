@@ -1,4 +1,4 @@
-READ ME: 
+READ ME: (Last updated: 11/03/2025)
 
 An object-oriented C++ framework for quantitative analysis and technical trading.
 Sugar_Bot reads financial .csv candle data, computes indicator signals, backtests strategies, and performs multi-parameter (M×N) grid sweeps to discover optimal configurations.
@@ -33,18 +33,22 @@ sugar_Bot/
 │  ├─ series.h
 │  ├─ strategy.h
 │  ├─ strategy_roc_sma.h
+│  ├─ strategy_diff_cross.h
+│  ├─ strategy_swing_breakout.h
 │  ├─ sweep.h
 │  └─ utils.h
 ├─ out/                         # build output 
 ├─ src/
 │  ├─ backtester.cpp            # currently empty
 │  ├─ csv.cpp
-│  ├─ indicators_composite.cpp
+│  ├─ indicators_composite.cpp  # updated
 │  ├─ indicators_ema.cpp
 │  ├─ indicators_roc.cpp
 │  ├─ indicators_sma.cpp
 │  ├─ series.cpp                # currently empty
 │  ├─ strategy_roc_sma.cpp
+│  ├─ strategy_diff_cross.cpp
+│  ├─ strategy_swing_breakout.cpp
 │  ├─ sweep.cpp                 # currently empty
 │  └─ utils.cpp
 ├─ CMakeLists.txt
